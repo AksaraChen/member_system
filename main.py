@@ -27,7 +27,7 @@ collection=db.member_data
 @app.route("/")
 def home():
     if session:
-        return redirect("/mamber")
+        return redirect("/member")
     else:
         return render_template("Homepage.html")
 
@@ -48,14 +48,16 @@ def signin():
     ]})
     if comfirm:
         session["name"]=comfirm["name"]
-        print(session["name"])
-        return redirect("/mamber")
+        return redirect("/")
     else:
         return render_template("Errorpage.html",em="密碼錯誤或信箱未註冊")
     
-@app.route("/mamber")
+@app.route("/member")
 def member():
-    return render_template("Memberpage.html",name=session["name"])
+    if session:
+        return render_template("Memberpage.html",name=session["name"])
+    else:
+        return redirect("/")
 
 @app.route("/signup")
 def signup():
@@ -72,7 +74,7 @@ def ss():
     })
     if com:
         return render_template("Errorpage.html",em="信箱已經註冊")
-
+    session["name"]=name
     comfirm=collection.insert_one({
         "name":name,
         "email":email,
@@ -86,6 +88,6 @@ def ss():
 @app.route("/signout")
 def signout():
     del session["name"]
-    return render_template("Homepage.html")
+    return redirect("/")
 
 app.run(port=3000)

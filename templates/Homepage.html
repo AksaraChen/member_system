@@ -2,6 +2,8 @@
 <html lang="zh-tw">
 
 <head>
+    <link href="{{ url_for('static',
+    filename='css/Homepage.css', _external=True) }}" rel="stylesheet" />
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,20 +11,22 @@
 </head>
 
 <body>
+
+    <div id="but" align="right">
+        <form action="/signup">
+            <button>註冊</button>
+        </form>
+
+        <form action="/signinpage">
+            <button>登入</button>
+        </form>
+    </div>
     <h2>會員系統首頁</h2>
-    <div>歡迎蒞臨, 請登入或註冊：</div>
-    <br>
     <form action="/signup">
         <button>點我註冊</button>
     </form>
     <br>
-    <form action="/signin" method="POST">
-        帳號：<input type="text" name="email" />
-        <br>
-        密碼：<input type="text" name="password" />
-        <br>
-        <button>點擊送出</button>
-    </form>
+
 </body>
 
 </html>

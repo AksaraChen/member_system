@@ -3,11 +3,7 @@ import pymongo
 from pymongo.mongo_client import MongoClient
 from pymongo.server_api import ServerApi
 
-app=Flask(
-    __name__,
-    static_folder="public",
-    static_url_path="/"
-)
+app=Flask(    __name__)
 
 app.secret_key="aksara"
 
@@ -37,6 +33,10 @@ def home():
 def error():
     error_message=request.args.get("em", "發生錯誤，請聯繫客服")
     return render_template("Errorpage.html", em=error_message)
+
+@app.route("/signinpage")
+def signinpage():
+    return render_template("Signinpage.html")
 
 @app.route("/signin", methods=["POST"])
 def signin():

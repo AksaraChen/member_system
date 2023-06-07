@@ -1,0 +1,16 @@
+#but {
+    align: right;
+    color: #df1616;
+    white-space: nowrap;
+    display: inline;
+}
+
+form {
+    float: right;
+    margin: 0px;
+    display: inline
+}
+
+h2 {
+    color: red;
+}
